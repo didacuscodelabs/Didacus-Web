@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Didacus - Arte Sagrado desde la Memoria Estelar</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+        
+        :root {
+            --midnight-blue: #0A1F44;
+            --celestial-blue: #4B6CB7;
+            --sacred-gold: #FFD700;
+            --soft-cream: #F5F5DC;
+            --ethereal-white: #FAFAFA;
+            --mystic-purple: #6B46C1;
+            --gradient-primary: linear-gradient(135deg, var(--midnight-blue) 0%, var(--celestial-blue) 100%);
+            --gradient-accent: linear-gradient(45deg, var(--sacred-gold) 0%, #FFA500 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--midnight-blue);
+            background: var(--ethereal-white);
+            overflow-x: hidden;
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(10, 31, 68, 0.95);
+            color: white;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--celestial-blue);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sacred-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="stars"><stop offset="0%" stop-color="white" stop-opacity="0.3"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><circle cx="20" cy="20" r="1" fill="url(%23stars)"/><circle cx="80" cy="30" r="0.5" fill="url(%23stars)"/><circle cx="60" cy="70" r="1.2" fill="url(%23stars)"/><circle cx="30" cy="80" r="0.8" fill="url(%23stars)"/><circle cx="90" cy="60" r="0.6" fill="url(%23stars)"/></svg>') repeat;
+            animation: starfield 20s linear infinite;
+            opacity: 0.6;
+        }
+        
+        @keyframes starfield {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.5s forwards;
+        }
+        
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1s forwards;
+            color: var(--soft-cream);
+        }
+        
+        .hero .tagline {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 1.5s forwards;
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cta-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gradient-accent);
+            color: var(--midnight-blue);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 2s forwards;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+        
+        /* Section Styling */
+        .section {
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--celestial-blue);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Manifiesto Section */
+        .manifesto {
+            background: var(--soft-cream);
+        }
+        
+        .manifesto-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .manifesto-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .manifesto-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .manifesto-highlight {
+            font-style: italic;
+            color: var(--mystic-purple);
+            font-weight: 500;
+        }
+        
+        .manifesto-visual {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sacred-symbol {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            border: 3px solid var(--sacred-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sacred-symbol::before {
+            content: '✦';
+            font-size: 4rem;
+            color: var(--sacred-gold);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
+        
+        /* Portales Gallery */
+        .portales-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .portal-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+        }
+        
+        .portal-image {
+            width: 100%;
+            height: 250px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .portal-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .portal-card:hover .portal-image::before {
+            left: 100%;
+        }
+        
+        .portal-content {
+            padding: 2rem;
+        }
+        
+        .portal-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--midnight-blue);
+        }
+        
+        .portal-intention {
+            color: var(--celestial-blue);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .portal-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .portal-features {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-tag {
+            background: var(--soft-cream);
+            color: var(--midnight-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .portal-cta {
+            background: var(--gradient-accent);
+            color: var(--midnight-blue);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .portal-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+        
+        /* Audio Player */
+        .audio-section {
+            background: var(--midnight-blue);
+            color: white;
+            text-align: center;
+        }
+        
+        .audio-player {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .play-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-accent);
+            border: none;
+            color: var(--midnight-blue);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .audio-info {
+            text-align: center;
+        }
+        
+        .audio-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .audio-description {
+            opacity: 0.8;
+        }
+        
+        /* Newsletter Section */
+        .newsletter {
+            background: var(--soft-cream);
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem;
+            border: 2px solid var(--celestial-blue);
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-input:focus {
+            border-color: var(--sacred-gold);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+        }
+        
+        .newsletter-submit {
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(75, 108, 183, 0.3);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--midnight-blue);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--sacred-gold);
+        }
+        
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--sacred-gold);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            opacity: 0.6;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .manifesto-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .portales-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .newsletter-input {
+                min-width: auto;
+                width: 100%;
+            }
+        }
+        
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            transition: width 0.1s ease;
+            z-index: 1001;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--midnight-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-symbol {
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--sacred-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: spin 2s linear infinite;
+        }
+        
+        .loading-symbol::before {
+            content: '✦';
+            font-size: 2rem;
+            color: var(--sacred-gold);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-symbol"></div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Didacus</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#manifiesto">Manifiesto</a></li>
+                <li><a href="#portales">Portales</a></li>
+                <li><a href="#sonidos">Sonidos</a></li>
+                <li><a href="#comunidad">Comunidad</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Didacus</h1>
+            <p class="subtitle">La voz creadora del niño interior</p>
+            <p class="tagline">Arte que convoca, no decora</p>
+            <a href="#portales" class="cta-primary">Activa tu calma</a>
+        </div>
+    </section>
+    
+    <!-- Manifiesto Section -->
+    <section class="section manifesto" id="manifiesto">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuestro Manifiesto</h2>
+                <p class="section-subtitle">Portales visuales y sonoros que recuerdan la conexión con el origen</p>
+            </div>
+            <div class="manifesto-content">
+                <div class="manifesto-text">
+                    <p>Didacus es <span class="manifesto-highlight">arte hecho alma</span>. Cada pieza es un portal: no decora, convoca.</p>
+                    <p>Usamos acuarelas, geometría sagrada, neuroestética e IA como herramientas al servicio de la contemplación. La obra busca volver a la <span class="manifesto-highlight">inocencia sagrada</span>, sostener vibraciones y ofrecer belleza con sentido.</p>
+                    <p>Creamos espacios de calma y presencia que acompañan la vida cotidiana, activando estados internos de apertura y conexión con la esencia más tierna de nuestro ser.</p>
+                </div>
+                <div class="manifesto-visual">
+                    <div class="sacred-symbol"></div>
+                    <h3>Desde la memoria estelar</h3>
+                    <p>Cada creación nace de la contemplación y el juego sagrado</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portales Gallery Section -->
+    <section class="section" id="portales">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Portales Digitales</h2>
+                <p class="section-subtitle">Cada portal es una invitación a la contemplación y la presencia</p>
+            </div>
+            <div class="portales-grid">
+                <div class="portal-card">
+                    <div class="portal-image">🌙</div>
+                    <div class="portal-content">
+                        <h3 class="portal-title">Portal Lunar</h3>
+                        <p class="portal-intention">Intención: Calma nocturna</p>
+                        <p class="portal-description">Pack de 3 wallpapers diseñados para acompañar tus momentos de introspección y descanso.</p>
+                        <div class="portal-features">
+                            <span class="feature-tag">Desktop</span>
+                            <span class="feature-tag">Móvil</span>
+                            <span class="feature-tag">Audio 4min</span>
+                        </div>
+                        <button class="portal-cta">Descargar Portal</button>
+                    </div>
+                </div>
+                
+                <div class="portal-card">
+                    <div class="portal-image">✦</div>
+                    <div class="portal-content">
+                        <h3 class="portal-title">Portal Estelar</h3>
+                        <p class="portal-intention">Intención: Conexión cósmica</p>
+                        <p class="portal-description">Geometrías sagradas que evocan la vastedad del universo y nuestra conexión con él.</p>
+                        <div class="portal-features">
+                            <span class="feature-tag">Geometría</span>
+                            <span class="feature-tag">Print A3</span>
+                            <span class="feature-tag">Audio 7min</span>
+                        </div>
+                        <button class="portal-cta">Descargar Portal</button>
+                    </div>
+                </div>
+                
+                <div class="portal-card">
+                    <div class="portal-image">🌸</div>
+                    <div class="portal-content">
+                        <h3 class="portal-title">Portal Primaveral</h3>
+                        <p class="portal-intention">Intención: Renovación interior</p>
+                        <p class="portal-description">Acuarelas suaves que despiertan la ternura y celebran los nuevos comienzos.</p>
+                        <div class="portal-features">
+                            <span class="feature-tag">Acuarela</span>
+                            <span class="feature-tag">Lámina</span>
+                            <span class="feature-tag">Audio 5min</span>
+                        </div>
+                        <button class="portal-cta">Descargar Portal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Audio Section -->
+    <section class="section audio-section" id="sonidos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Paisajes Sonoros</h2>
+                <p class="section-subtitle">Sonidos que elevan y acompañan la contemplación</p>
+            </div>
+            <div class="audio-player">
+                <div class="audio-controls">
+                    <button class="play-button" id="playButton">▶</button>
+                </div>
+                <div class="audio-info">
+                    <h3 class="audio-title">Portal Sonoro - Calma Estelar</h3>
+                    <p class="audio-description">3 minutos de paisaje sonoro diseñado para acompañar tu práctica contemplativa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <section class="section newsletter" id="comunidad">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Únete a la Comunidad</h2>
+                <p class="section-subtitle">Recibe nuevos portales y reflexiones sobre arte sagrado</p>
+            </div>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Tu correo sagrado" required>
+                <button type="submit" class="newsletter-submit">Conectar</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Didacus</h3>
+                    <p>Arte sagrado desde la memoria estelar</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Conecta</h3>
+                    <p><a href="#">Instagram</a></p>
+                    <p><a href="#">YouTube</a></p>
+                    <p><a href="#">Ko-fi</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Portales</h3>
+                    <p><a href="#">Descargas</a></p>
+                    <p><a href="#">Prints</a></p>
+                    <p><a href="#">NFTs</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Didacus. Arte que convoca, no decora.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hide');
+            }, 2000);
+        });
+        
+        // Scroll Indicator
+        function updateScrollIndicator() {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('scrollIndicator').style.width = scrollPercent + '%';
+        }
+        
+        // Navbar Scroll Effect
+        function updateNavbar() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }
+        
+        // Smooth Reveal Animation
+        function revealElements() {
+            const sections = document.querySelectorAll('.section');
+            const windowHeight = window.innerHeight;
+            
+            sections.forEach(section => {
+                const elementTop = section.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+        
+        // Audio Player Functionality
+        let isPlaying = false;
+        const playButton = document.getElementById('playButton');
+        
+        playButton.addEventListener('click', function() {
+            if (!isPlaying) {
+                this.innerHTML = '⏸';
+                isPlaying = true;
+                // Simulate audio playing
+                setTimeout(() => {
+                    this.innerHTML = '▶';
+                    isPlaying = false;
+                }, 3000); // Simulated 3-second audio
+            } else {
+                this.innerHTML = '▶';
+                isPlaying = false;
+            }
+        });
+        
+        // Portal CTA Interactions
+        document.querySelectorAll('.portal-cta').forEach(button => {
+            button.addEventListener('click', function() {
+                const originalText = this.textContent;
+                this.textContent = 'Portal Activado ✦';
+                this.style.background = 'linear-gradient(45deg, #6B46C1, #4B6CB7)';
+                this.style.color = 'white';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                    this.style.color = '';
+                }, 2000);
+            });
+        });
+        
+        // Newsletter Form
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitButton = this.querySelector('.newsletter-submit');
+            const originalText = submitButton.textContent;
+            
+            submitButton.textContent = 'Conectado ✦';
+            submitButton.style.background = 'linear-gradient(45deg, #FFD700, #FFA500)';
+            
+            setTimeout(() => {
+                submitButton.textContent = originalText;
+                submitButton.style.background = '';
+                this.reset();
+            }, 2000);
+        });
+        
+        // Parallax Effect for Hero
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+        
+        // Sacred Symbol Animation
+        function animateSacredSymbol() {
+            const symbol = document.querySelector('.sacred-symbol');
+            if (symbol) {
+                const rect = symbol.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const scrollPercent = (windowHeight - rect.top) / windowHeight;
+                    symbol.style.transform = `rotate(${scrollPercent * 360}deg)`;
+                }
+            }
+        }
+        
+        // Portal Cards Hover Effect
+        document.querySelectorAll('.portal-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const image = this.querySelector('.portal-image');
+                image.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const image = this.querySelector('.portal-image');
+                image.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+        
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Typing Effect for Hero Tagline
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+        
+        // Initialize typing effect after page load
+        setTimeout(() => {
+            const tagline = document.querySelector('.hero .tagline');
+            if (tagline) {
+                const text = tagline.textContent;
+                typeWriter(tagline, text, 80);
+            }
+        }, 3000);
+        
+        // Intersection Observer for better performance
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Easter Egg: Konami Code
+        let konamiCode = [];
+        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+        
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            konamiCode = konamiCode.slice(-10);
+            
+            if (konamiCode.join('') === konamiSequence.join('')) {
+                document.body.style.filter = 'hue-rotate(180deg)';
+                setTimeout(() => {
+                    document.body.style.filter = '';
+                }, 3000);
+            }
+        });
+        
+        // Mobile Menu Toggle (for responsive design)
+        function createMobileMenu() {
+            const navbar = document.querySelector('.nav-container');
+            const navLinks = document.querySelector('.nav-links');
+            
+            // Create mobile menu button
+            const mobileButton = document.createElement('button');
+            mobileButton.innerHTML = '☰';
+            mobileButton.className = 'mobile-menu-btn';
+            mobileButton.style.cssText = `
+                display: none;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                color: inherit;
+                cursor: pointer;
+                @media (max-width: 768px) {
+                    display: block;
+                }
+            `;
+            
+            navbar.appendChild(mobileButton);
+            
+            // Toggle menu on mobile
+            mobileButton.addEventListener('click', function() {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.position = 'absolute';
+                navLinks.style.top = '100%';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.background = 'rgba(10, 31, 68, 0.95)';
+                navLinks.style.padding = '1rem';
+                navLinks.style.borderRadius = '0 0 10px 10px';
+            });
+        }
+        
+        // Enhanced scroll-based animations
+        function enhancedScrollEffects() {
+            const scrolled = window.pageYOffset;
+            
+            // Parallax for hero background
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+            
+            // Rotate sacred symbol based on scroll
+            animateSacredSymbol();
+            
+            // Update portal cards based on scroll position
+            const portalCards = document.querySelectorAll('.portal-card');
+            portalCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const scrollPercent = (windowHeight - rect.top) / windowHeight;
+                    const delay = index * 100;
+                    
+                    setTimeout(() => {
+                        card.style.transform = `translateY(0) scale(1)`;
+                        card.style.opacity = '1';
+                    }, delay);
+                }
+            });
+        }
+        
+        // Event Listeners
+        window.addEventListener('scroll', function() {
+            updateScrollIndicator();
+            updateNavbar();
+            enhancedScrollEffects();
+            
+            // Throttle scroll events for better performance
+            if (!window.scrolling) {
+                window.scrolling = true;
+                requestAnimationFrame(() => {
+                    window.scrolling = false;
+                });
+            }
+        });
+        
+        window.addEventListener('resize', function() {
+            // Responsive adjustments
+            const isMobile = window.innerWidth <= 768;
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (!isMobile) {
+                navLinks.style.display = 'flex';
+                navLinks.style.position = 'static';
+                navLinks.style.flexDirection = 'row';
+                navLinks.style.background = 'none';
+                navLinks.style.padding = '0';
+                navLinks.style.width = 'auto';
+            }
+        });
+        
+        // Initialize mobile menu on load
+        document.addEventListener('DOMContentLoaded', function() {
+            createMobileMenu();
+            
+            // Add CSS for mobile menu button
+            const style = document.createElement('style');
+            style.textContent = `
+                @media (max-width: 768px) {
+                    .mobile-menu-btn {
+                        display: block !important;
+                    }
+                    .nav-links {
+                        display: none;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+        
+        // Performance optimization: Use passive event listeners where possible
+        window.addEventListener('scroll', updateScrollIndicator, { passive: true });
+        window.addEventListener('scroll', updateNavbar, { passive: true });
+        
+        // Accessibility improvements
+        document.addEventListener('keydown', function(e) {
+            // Enable keyboard navigation for portal cards
+            if (e.key === 'Enter' || e.key === ' ') {
+                const focused = document.activeElement;
+                if (focused.classList.contains('portal-cta')) {
+                    focused.click();
+                }
+            }
+        });
+        
+        // Add aria labels and improved accessibility
+        document.querySelectorAll('.portal-cta').forEach(button => {
+            button.setAttribute('aria-label', 'Descargar portal de arte sagrado');
+            button.setAttribute('tabindex', '0');
+        });
+        
+        document.querySelector('.play-button').setAttribute('aria-label', 'Reproducir paisaje sonoro');
+        document.querySelector('.newsletter-submit').setAttribute('aria-label', 'Unirse a la comunidad');
+    </script>
+</body>
+</html>
